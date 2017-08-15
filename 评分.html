@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .grade ul{
+            overflow: hidden;
+        }
+        .grade p{
+            margin-left: 50px;
+        }
+        .grade ul li{
+            font-size: 30px;
+            list-style: none;
+            float: left;
+            padding: 0 10px;
+            color: #ffba00;
+        }
+        .bg_colors{
+            color: #ffba00;
+        }
+    </style>
+</head>
+<body>
+<div class="grade">
+    <ul>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+    <p>分数：<mark></mark></p>
+</div>
+
+<script src="jquery.min.js"></script>
+    <script>
+
+        $('.grade li').bind({'mouseenter':function(){
+            $(this).html('★').prevAll('li').html('★').end().nextAll().html('☆')
+        },'mouseleave':function(){
+            $('.grade li').html('☆');
+            $('.grade li[index=index]').html('★').prevAll().html('★')
+        },'click':function(){
+            $(this).attr("index","index").siblings("li").removeAttr("index");
+
+            var sum=($(this).index()+1)*20
+            if(sum==20){
+                $('mark').html('非常不满意')
+            }else if(sum==40){
+                $('mark').html('比较满意')
+            }else if(sum==60){
+                $('mark').html('满意')
+            }else if(sum==80){
+                $('mark').html('良好')
+            }else {
+                $('mark').html('非常满意')
+            }
+        }})
+
+    </script>
+</body>
+</html>
